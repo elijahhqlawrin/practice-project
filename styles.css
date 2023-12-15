@@ -1,6 +1,11 @@
 *, ::before, ::after {
     box-sizing: border-box;
 }
+/* ===== TYPOGRAPHY ===== */
+
+h1 {
+    color: #F9F6EE;
+}
 
 /* ===== GENERAL LAYOUT STYLES ===== */
 
@@ -19,9 +24,6 @@ body {
     line-height: 1.4;
 }
 
-h1 {
-    color: #F9F6EE;
-}
 
 header {
     background: hsl(215deg 43% 55%);
@@ -31,6 +33,7 @@ header {
 main {
     width: 80%;
     margin: 0 auto;
+    line-height: 1.4;
 }
 
 footer {
@@ -75,6 +78,47 @@ nav {
     color: #F5F5F5;
 }
 
+/* ===== AUTHENTICATION PAGE STYLES ===== */
+
+.logged-out-view {
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.app-title {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 0.5em;
+}
+
+.authn-fields-and-btns {
+    display: flex;
+    flex-direction: column;
+}
+
+.email-input,
+.password-input {
+    resize: none;
+    outline: none;
+    width: 100%;
+    margin: 0.8em 0;
+    border: 0;
+    border-bottom: 2px solid #1E90FF;
+    border-radius: 0.6em;
+    padding: 0.8em 1.2em;
+    font-family: inherit;
+}
+
+.authn-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
 /* ===== TERM FORM LAYOUT ===== */
 
 .form-page {
@@ -110,20 +154,20 @@ nav {
     font-family: inherit;
 }
 
-
 /* ===== BUTTON STYLES ===== */
 
-.submit-btn {
+.btn {
     min-width: 100px;
     background: transparent;
     border: none;
     padding: 0;
+    margin: 0.8em 0;
     cursor: pointer;
     position: relative;
     font-family: inherit;
 }
 
-.submit-btn-shadow {
+.btn-shadow {
     position: relative;
     inset: 0;
     width: 100%;
@@ -134,7 +178,7 @@ nav {
     filter: blur(4px);
 }
 
-.submit-btn-edge {
+.btn-edge {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -143,12 +187,14 @@ nav {
     background: hsl(215deg 43% 55%);
 }
 
-.submit-btn-front {
+.btn-front {
     display: block;
     border-radius: 0.6em;
     padding: 0.8em 1.8em;
     background: hsl(220, 43%, 75%);
-    color: #333333;
+    color: #F9F6EE;
+    font-size: 1.4em;
+    font-weight: 700;
     transform: translateY(-4px);
     position: relative;
     transition: 
@@ -156,21 +202,38 @@ nav {
         cubic-bezier(.3, .7, .4, .1);
 }
 
-.submit-btn:hover .submit-btn-front {
+.btn:hover .btn-front {
     transform: translateY(-6px);
     transition: 
         transform 250ms
         cubic-bezier(.3, .7, .4, .1.5);
 }
-.submit-btn:hover .submit-btn-shadow {
+.btn:hover .btn-shadow {
     transform: translateY(4px);
 }
-.submit-btn:active .submit-btn-front {
+.btn:active .btn-front {
     transform: translateY(-2px);
 }
-.submit-btn:active .submit-btn-front {
+.btn:active .btn-front {
     transform: translateY(1px);
 }
-.submit-btn:focus:not(:focus-visible) {
+.btn:focus:not(:focus-visible) {
     outline: none;
+}
+
+/* ===== MEDIA QUERIES ===== */
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 440px;
+        margin: 0 auto;
+    }
+    .authn-buttons {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .sign-in-btn,
+    .create-acct-btn {
+        width: 48%;
+    }
 }

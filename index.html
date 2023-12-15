@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
+    <!-- <header>
         <nav>
             <h1>App</h1>
             <ul class="nav-links-list">
@@ -21,10 +21,45 @@
             </ul>
             <a class="nav-signin" href="#">Sign in</a>
         </nav>
-    </header>
+    </header> -->
 
     <main>
-        <section id="form-page">
+        <section id="logged-out-view">
+            <div class="container">
+                <h1 class="app-title">App Title</h1>
+
+                <div class="authn-fields-and-btns">
+                    <label for="email-input"></label>
+                    <input
+                        id="email-input"
+                        class="email-input"
+                        type="email"
+                        placeholder="Email"
+                    >
+                    <label for="password-input"></label>
+                    <input
+                        id="password-input"
+                        class="password-input"
+                        type="password"
+                        placeholder="Password"
+                    >
+                    <div class="authn-buttons">
+                        <button id="sign-in-btn" class="sign-in-btn btn">
+                            <span class="btn-shadow"></span>
+                            <span class="btn-edge"></span>
+                            <span class="btn-front">Sign in</span>
+                        </button>
+                        <button id="create-acct-btn" class="create-acct-btn btn">
+                            <span class="btn-shadow"></span>
+                            <span class="btn-edge"></span>
+                            <span class="btn-front">Create account</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- <section id="form-page">
             <form class="term-form">
                 <div class="input-container">
                     <label for="term-input" class="textarea-label">
@@ -38,13 +73,13 @@
                     ></textarea>
                 </div>
                 
-                <button class="submit-btn">
-                    <span class="submit-btn-shadow"></span>
-                    <span class="submit-btn-edge"></span>
-                    <span class="submit-btn-front">Send</span>
+                <button class="submit-btn btn">
+                    <span class="btn-shadow"></span>
+                    <span class="btn-edge"></span>
+                    <span class="btn-front">Send</span>
                 </button>
             </form>
-        </section>
+        </section> -->
     </main>
 
     <footer>
