@@ -1,7 +1,19 @@
 /* ===== IMPORTS ===== */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"
 
 /* ===== FIREBASE SETUP ===== */
+const firebaseConfig = {
+    apiKey: "AIzaSyAkrkwktEMIBoIVT0TDfLm7eF8gOlPb1VY",
+    authDomain: "vocab-app-de707.firebaseapp.com",
+    projectId: "vocab-app-de707",
+    storageBucket: "vocab-app-de707.appspot.com",
+    messagingSenderId: "163033970383",
+    appId: "1:163033970383:web:24b7e3e92823b5973e69ba"
+  }
 
+  const app = initializeApp(firebaseConfig)
+
+  console.log(app)
 /* ===== UI ===== */
 /* ===== UI - ELEMENTS ===== */
 const loggedOutView = document.getElementById("logged-out-view")
