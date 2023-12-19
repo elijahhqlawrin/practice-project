@@ -1,7 +1,8 @@
 /* ===== IMPORTS ===== */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"
 import { getAuth,
-    createUserWithEmailAndPassword
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"
 
 
@@ -39,7 +40,18 @@ displayLoggedOutView()
 /* ===== FUNCTIONS ===== */
 /* ===== FUNCTIONS - FIREBASE - AUTHENTICATION */
 function authSignInWithEmail() {
-    alert("Sign in with email and password")
+    const email = emailInputEL.value
+    const password = passwordInputEl.value
+    
+    signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            displayLoggedInView()
+        })
+        .catch((error) => {
+            const errorCode = error.code
+            const errorMessage = error.message
+            console.error(`${errorCode}: ${errorMessage}`)
+        });
 }
 
 function authCreateAcctWithEmail() {
@@ -51,8 +63,8 @@ function authCreateAcctWithEmail() {
             displayLoggedInView()
         })
         .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
+            const errorCode = error.code
+            const errorMessage = error.message
             console.error(`${errorCode}: ${errorMessage}`)
         });
 }
