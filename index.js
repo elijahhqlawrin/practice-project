@@ -1,5 +1,9 @@
 /* ===== IMPORTS ===== */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"
+import { getAuth,
+    createUserWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"
+
 
 /* ===== FIREBASE SETUP ===== */
 const firebaseConfig = {
@@ -12,8 +16,8 @@ const firebaseConfig = {
   }
 
   const app = initializeApp(firebaseConfig)
+  const auth = getAuth(app)
 
-  console.log(app)
 /* ===== UI ===== */
 /* ===== UI - ELEMENTS ===== */
 const loggedOutView = document.getElementById("logged-out-view")
@@ -31,8 +35,6 @@ createAcctBtnEl.addEventListener("click", authCreateAcctWithEmail)
 
 /* ===== MAIN JAVASCRIPT ===== */
 displayLoggedOutView()
-// displayLoggedInView()
-
 
 /* ===== FUNCTIONS ===== */
 /* ===== FUNCTIONS - FIREBASE - AUTHENTICATION */
@@ -41,7 +43,18 @@ function authSignInWithEmail() {
 }
 
 function authCreateAcctWithEmail() {
-    alert("Sign in with email and password")
+    const email = emailInputEL.value
+    const password = passwordInputEl.value
+
+    createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            displayLoggedInView()
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.error(`${errorCode}: ${errorMessage}`)
+        });
 }
 
 /* ===== FUNCTIONS - UI FUNCTIONS ===== */
