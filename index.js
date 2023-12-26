@@ -2,7 +2,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"
 import { getAuth,
     createUserWithEmailAndPassword,
-    signInWithEmailAndPassword
+    signInWithEmailAndPassword,
+    signOut
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"
 
 
@@ -30,9 +31,13 @@ const passwordInputEl = document.getElementById("password-input")
 const signInBtnEl = document.getElementById("sign-in-btn")
 const createAcctBtnEl = document.getElementById("create-acct-btn")
 
+const signOutBtnEl = document.getElementById("sign-out-btn")
+
 /* ===== UI - EVENT LISTENERS ===== */
 signInBtnEl.addEventListener("click", authSignInWithEmail)
 createAcctBtnEl.addEventListener("click", authCreateAcctWithEmail)
+
+signOutBtnEl.addEventListener("click", authSignOut)
 
 /* ===== MAIN JAVASCRIPT ===== */
 displayLoggedOutView()
@@ -42,7 +47,7 @@ displayLoggedOutView()
 function authSignInWithEmail() {
     const email = emailInputEL.value
     const password = passwordInputEl.value
-    
+
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             displayLoggedInView()
@@ -67,6 +72,14 @@ function authCreateAcctWithEmail() {
             const errorMessage = error.message
             console.error(`${errorCode}: ${errorMessage}`)
         });
+}
+
+function authSignOut() {
+    signOut(auth).then(() => {
+        displayLoggedOutView()
+      }).catch((error) => {
+        console.log(error)
+      })
 }
 
 /* ===== FUNCTIONS - UI FUNCTIONS ===== */
