@@ -50,6 +50,7 @@ function authSignInWithEmail() {
 
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
+            clearAuthFields()
             displayLoggedInView()
         })
         .catch((error) => {
@@ -65,6 +66,7 @@ function authCreateAcctWithEmail() {
 
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
+            clearAuthFields()
             displayLoggedInView()
         })
         .catch((error) => {
@@ -99,4 +101,13 @@ function displayElement(element) {
 
 function hideElement(element) {
     element.style.display = "none"
+}
+
+function clearInputField(field) {
+    field.value = ""
+}
+
+function clearAuthFields() {
+    clearInputField(emailInputEL)
+    clearInputField(passwordInputEl)
 }
