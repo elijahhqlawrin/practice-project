@@ -3,7 +3,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebas
 import { getAuth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    signOut
+    signOut,
+    onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"
 
 
@@ -40,7 +41,14 @@ createAcctBtnEl.addEventListener("click", authCreateAcctWithEmail)
 signOutBtnEl.addEventListener("click", authSignOut)
 
 /* ===== MAIN JAVASCRIPT ===== */
-displayLoggedOutView()
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        displayLoggedInView()
+        const uid = user.uid;
+    } else {
+        displayLoggedOutView()
+    }
+})
 
 /* ===== FUNCTIONS ===== */
 /* ===== FUNCTIONS - FIREBASE - AUTHENTICATION */
@@ -51,7 +59,6 @@ function authSignInWithEmail() {
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             clearAuthFields()
-            displayLoggedInView()
         })
         .catch((error) => {
             const errorCode = error.code
@@ -67,7 +74,6 @@ function authCreateAcctWithEmail() {
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             clearAuthFields()
-            displayLoggedInView()
         })
         .catch((error) => {
             const errorCode = error.code
@@ -78,7 +84,6 @@ function authCreateAcctWithEmail() {
 
 function authSignOut() {
     signOut(auth).then(() => {
-        displayLoggedOutView()
       }).catch((error) => {
         console.log(error)
       })
